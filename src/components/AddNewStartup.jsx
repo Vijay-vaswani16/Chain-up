@@ -1,6 +1,10 @@
-import React from "react"
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function AddNewStartup() {
+
+	const navigate = useNavigate();
+
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		let resBody = JSON.stringify({
@@ -29,13 +33,16 @@ export default function AddNewStartup() {
 			let resJson = await res.json()
 			if (res.status === 200) {
 				console.log("Submitted successfully")
+				navigate('/');
+				window.location.reload();
 			} else {
 				console.log("Some error occured")
 			}
 		} catch (err) {
 			console.log(err)
 		}
-	}
+		
+	};
 
 	return (
 		<div className="w-full">
